@@ -3757,6 +3757,20 @@ bool AdaptDispatch::DoConEmuAction(const std::wstring_view string)
 }
 
 // Method Description:
+// - Performs a Warp Action
+// -
+bool AdaptDispatch::DoWarpAction(const std::wstring_view)
+{
+    const auto isConPty = _api.IsConsolePty();
+    if (isConPty) {
+        // Flush the frame manually, to make sure marks end up on the right
+        // line, like the alt buffer sequence.
+        _renderer.TriggerFlush(false);
+    }
+    return false;
+}
+
+// Method Description:
 // - Performs a iTerm2 action
 // - Ascribes to the ITermDispatch interface
 // - Currently, the actions we support are:
