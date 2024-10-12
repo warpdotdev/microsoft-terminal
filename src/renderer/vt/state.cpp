@@ -269,8 +269,8 @@ void VtEngine::Cork(bool corked) noexcept
 
 // Method Description:
 // - This method will modify the DPI we're using for scaling calculations.
-//      Does nothing for vt, the dpi is handed by the terminal.
 // Arguments:
+//      Does nothing for vt, the dpi is handed by the terminal.
 // - iDpi - The Dots Per Inch to use for scaling. We will use this relative to
 //      the system default DPI defined in Windows headers as a constant.
 // Return Value:
