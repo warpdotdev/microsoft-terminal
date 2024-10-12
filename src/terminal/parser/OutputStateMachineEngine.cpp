@@ -742,12 +742,23 @@ IStateMachineEngine::StringHandler OutputStateMachineEngine::ActionDcsDispatch(c
     case DcsActionCodes::DECRQSS_RequestSetting:
         handler = _dispatch->RequestSetting();
         break;
+    case DcsActionCodes::DCS_WARP:
+        _dispatch->DoWarpAction();
+        handler = nullptr;
+        break;
     case DcsActionCodes::DECRSPS_RestorePresentationState:
         handler = _dispatch->RestorePresentationState(parameters.at(0));
         break;
     default:
         handler = nullptr;
         break;
+    }
+
+    // If we were unable to process the string, and there's a TTY attached to us,
+    //      trigger the state machine to flush the string to the terminal.
+    if (_pfnFlushToTerminal != nullptr && handler == nullptr)
+    {
+        _pfnFlushToTerminal();
     }
 
     _ClearLastChar();
@@ -901,6 +912,22 @@ bool OutputStateMachineEngine::ActionOscDispatch(const size_t parameter, const s
     case OscActionCodes::ITerm2Action:
     {
         success = _dispatch->DoITerm2Action(string);
+        break;
+    }
+
+    case OscActionCodes::WarpInBandGeneratorAction:
+    {
+        success = _dispatch->DoWarpInBandGeneratorAction();
+        break;
+    }
+    case OscActionCodes::WarpAction:
+    {
+        success = _dispatch->DoWarpAction();
+        break;
+    }
+    case OscActionCodes::WarpResetGridAction:
+    {
+        success = _dispatch->DoWarpResetGridAction();
         break;
     }
     case OscActionCodes::FinalTermAction:

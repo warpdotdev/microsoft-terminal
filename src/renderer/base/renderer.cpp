@@ -733,7 +733,7 @@ void Renderer::_PaintBufferOutput(_In_ IRenderEngine* const pEngine)
     auto resetLineTransform = wil::scope_exit([&]() {
         LOG_IF_FAILED(pEngine->ResetLineTransform());
     });
-
+		
     for (const auto& dirtyRect : dirtyAreas)
     {
         if (!dirtyRect)
