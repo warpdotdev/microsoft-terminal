@@ -146,6 +146,12 @@ public:
 
     virtual void DoITerm2Action(const std::wstring_view string) = 0;
 
+    virtual void DoWarpInBandGeneratorAction() = 0;
+
+    virtual void DoWarpAction() = 0;
+
+    virtual void DoWarpResetGridAction() = 0;
+
     virtual void DoFinalTermAction(const std::wstring_view string) = 0;
 
     virtual void DoVsCodeAction(const std::wstring_view string) = 0;

@@ -178,6 +178,7 @@ namespace Microsoft::Console::VirtualTerminal
             DECRSTS_RestoreTerminalState = VTID("$p"),
             DECRQSS_RequestSetting = VTID("$q"),
             DECRSPS_RestorePresentationState = VTID("$t"),
+            DCS_WARP = VTID("d"),
         };
 
         enum Vt52ActionCodes : uint64_t
@@ -221,6 +222,9 @@ namespace Microsoft::Console::VirtualTerminal
             VsCodeAction = 633,
             ITerm2Action = 1337,
             WTAction = 9001,
+            WarpInBandGeneratorAction = 9277,
+            WarpAction = 9278,
+            WarpResetGridAction = 9279,
         };
 
         bool _GetOscSetColorTable(const std::wstring_view string,

@@ -148,6 +148,12 @@ namespace Microsoft::Console::VirtualTerminal
 
         void DoITerm2Action(const std::wstring_view string) override;
 
+        void DoWarpInBandGeneratorAction() override;
+
+        void DoWarpAction() override;
+
+        void DoWarpResetGridAction() override;
+
         void DoFinalTermAction(const std::wstring_view string) override;
 
         void DoVsCodeAction(const std::wstring_view string) override;

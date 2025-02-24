@@ -3572,6 +3572,67 @@ void AdaptDispatch::DoITerm2Action(const std::wstring_view string)
 }
 
 // Method Description:
+// - Performs a iTerm2 action
+// - Ascribes to the ITermDispatch interface
+// - Currently, the actions we support are:
+//   * `OSC1337;SetMark`: mark a line as a prompt line
+// - Not actually used in conhost
+// Arguments:
+// - string: contains the parameters that define which action we do
+// Return Value:
+// - false in conhost, true for the SetMark action, otherwise false.
+void AdaptDispatch::DoWarpAction()
+{
+    // const auto isConPty = _api.IsConsolePty();
+    // if (isConPty)
+    // {
+    //     // Flush the frame manually, to make sure marks end up on the right
+    //     // line, like the alt buffer sequence.
+    //      _renderer.TriggerFlush(false);
+    //     //CursorPosition(1, 1);
+    // }
+}
+
+// Method Description:
+// - Performs a iTerm2 action
+// - Ascribes to the ITermDispatch interface
+// - Currently, the actions we support are:
+//   * `OSC1337;SetMark`: mark a line as a prompt line
+// - Not actually used in conhost
+// Arguments:
+// - string: contains the parameters that define which action we do
+// Return Value:
+// - false in conhost, true for the SetMark action, otherwise false.
+void AdaptDispatch::DoWarpInBandGeneratorAction()
+{
+    // const auto isConPty = _api.IsConsolePty();
+    // if (isConPty)
+    // {
+    //     // Flush the frame manually, to make sure marks end up on the right
+    //     // line, like the alt buffer sequence.
+    //     _renderer.TriggerFlush(false);
+    // }
+}
+
+void AdaptDispatch::DoWarpResetGridAction()
+{
+    // const auto isConPty = _api.IsConsolePty();
+    // if (isConPty)
+    // {
+    //     // Flush the frame manually, to make sure marks end up on the right
+    //     // line, like the alt buffer sequence.
+    //     _renderer.TriggerFlush(false);
+
+        // Clear grid without painting.
+        // ATODO: Anything else we need to reset here?
+        CursorPosition(1, 1);
+        _pages.ActivePage().Buffer().Reset();
+        // _renderer.TriggerFlush(false);
+        // //_pages.ActivePage().Buffer().Reset();
+    // }
+}
+
+// Method Description:
 // - Performs a FinalTerm action
 // - Currently, the actions we support are:
 //   * `OSC133;A`: mark a line as a prompt line

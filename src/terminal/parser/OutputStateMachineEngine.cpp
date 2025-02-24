@@ -724,6 +724,10 @@ IStateMachineEngine::StringHandler OutputStateMachineEngine::ActionDcsDispatch(c
     case DcsActionCodes::DECRSPS_RestorePresentationState:
         handler = _dispatch->RestorePresentationState(parameters.at(0));
         break;
+    case DcsActionCodes::DCS_WARP:
+        _dispatch->DoWarpAction();
+        handler = nullptr;
+        break;
     default:
         handler = nullptr;
         break;
@@ -841,6 +845,21 @@ bool OutputStateMachineEngine::ActionOscDispatch(const size_t parameter, const s
     case OscActionCodes::ITerm2Action:
     {
         _dispatch->DoITerm2Action(string);
+        break;
+    }
+    case OscActionCodes::WarpInBandGeneratorAction:
+    {
+        _dispatch->DoWarpInBandGeneratorAction();
+        break;
+    }
+    case OscActionCodes::WarpAction:
+    {
+        _dispatch->DoWarpAction();
+        break;
+    }
+    case OscActionCodes::WarpResetGridAction:
+    {
+        _dispatch->DoWarpResetGridAction();
         break;
     }
     case OscActionCodes::FinalTermAction:
